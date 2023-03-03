@@ -5,7 +5,7 @@ using UnityEngine;
 public class Animation : MonoBehaviour
 {
     Animator anim;
-    Player movement;
+    PlayerController movement;
     Rigidbody2D rb;
 
     int groundID;
@@ -18,7 +18,7 @@ public class Animation : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        movement = GetComponentInParent<Player>();
+        movement = GetComponentInParent<PlayerController>();
         rb = GetComponentInParent<Rigidbody2D>();
 
         groundID = Animator.StringToHash("isOnGround");

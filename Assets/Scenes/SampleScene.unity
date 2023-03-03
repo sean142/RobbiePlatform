@@ -17208,7 +17208,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.6471963, y: 1}
+    m_SensorSize: {x: 2.618421, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -21488,7 +21488,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114371805111088956, guid: 09853a837a6d1dd4ab1908a16c1f7937, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 09853a837a6d1dd4ab1908a16c1f7937, type: 3}
 --- !u!1001 &1405373022
 PrefabInstance:
@@ -24183,19 +24184,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd3621eea9190540829790401cb8455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  coll: {fileID: 0}
   isOnGround: 0
   isHeadBlacked: 0
   isHanging: 0
   footOffset: 0.4
   headClearance: 0.5
   groundDistance: 0.2
+  playerHight: 0
   eyeHeight: 1.5
   grabDistance: 0.4
   reachOffset: 0.7
   hangingJumpForce: 15
   groundLayer:
-    serializedVersion: 2
     m_Bits: 256
+  jumpPressed: 0
+  crouchPressed: 0
 --- !u!50 &1775153499
 Rigidbody2D:
   serializedVersion: 4
@@ -24275,7 +24280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775153497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.91, y: 2.11, z: 0}
+  m_LocalPosition: {x: -4.91, y: 0.589, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -24709,7 +24714,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 0, y: 0.9}
+  m_Offset: {x: 0, y: 0.95}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0.015625, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -24760,7 +24765,7 @@ MonoBehaviour:
   jumpForce: 6.3
   jumpHoldForce: 1.9
   jumpHoldDuration: 0.1
-  crouchJumpBoost: 2.5
+  crouchJumpBoost: 2.8
   hangingJumpForce: 15
   isCrouch: 0
   isOnGround: 0
