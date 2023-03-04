@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    static AudioManager current;
+    public static AudioManager instance;
 
     [Header("環境聲音")]
     public AudioClip ambientClip;
@@ -26,20 +26,20 @@ public class AudioManager : MonoBehaviour
     public AudioClip deathVoiceClip;
     public AudioClip orbVoiceClip;
 
-    AudioSource ambientSource;
-    AudioSource musicSource;
-    AudioSource fxSource;
+    AudioSource ambientSource;//環境
+    AudioSource musicSource;//背景
+    AudioSource fxSource;//人聲
     AudioSource playerSource;
     AudioSource voiceSource;
 
     private void Awake()
     {
-        if (current != null)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        current = this;
+        instance = this;
 
         //	場景更改時未銷毀的對象
         DontDestroyOnLoad(gameObject);
@@ -55,64 +55,64 @@ public class AudioManager : MonoBehaviour
 
     void StartLevelAudio()
     {
-        current.ambientSource.clip = current.ambientClip;
-        current.ambientSource.loop = true;
-        current.ambientSource.Play();
+        instance.ambientSource.clip = instance.ambientClip;
+        instance.ambientSource.loop = true;
+        instance.ambientSource.Play();
 
-        current.musicSource.clip = current.musicClip;
-        current.musicSource.loop = true;
-        current.musicSource.Play();
+        instance.musicSource.clip = instance.musicClip;
+        instance.musicSource.loop = true;
+        instance.musicSource.Play();
     }
 
     public static void PlayDoorOpenAudio()
     {
-        current.fxSource.clip = current.doorFXClip;
-        current.fxSource.PlayDelayed(1f);
+        instance.fxSource.clip = instance.doorFXClip;
+        instance.fxSource.PlayDelayed(1f);
     }
 
     public static void PlayFootstrpAudio()
     {
-        int index = Random. Range(0, current.walkStepClips.Length);
+        int index = Random. Range(0, instance.walkStepClips.Length);
 
-        current.playerSource.clip = current.walkStepClips[index];
-        current.playerSource.Play();
+        instance.playerSource.clip = instance.walkStepClips[index];
+        instance.playerSource.Play();
     }
 
     public static void PlayCrouchFootstrpAudio()
     {
-        int index = Random.Range(0, current.crouchStepClips.Length);
+        int index = Random.Range(0, instance.crouchStepClips.Length);
 
-        current.playerSource.clip = current.crouchStepClips[index];
-        current.playerSource.Play();
+        instance.playerSource.clip = instance.crouchStepClips[index];
+        instance.playerSource.Play();
     }
 
     public static void PlayerJumpAudio()
     {
-        current.playerSource.clip = current.jumpClip;
-        current.playerSource.Play();
+        instance.playerSource.clip = instance.jumpClip;
+        instance.playerSource.Play();
 
-        current.voiceSource.clip = current.jumpVoiceClip;
-        current.voiceSource.Play();
+        instance.voiceSource.clip = instance.jumpVoiceClip;
+        instance.voiceSource.Play();
     }
 
     public static void PlayerDeathAudio()
     {
-        current.playerSource.clip = current.deathClip;
-        current.playerSource.Play();
+        instance.playerSource.clip = instance.deathClip;
+        instance.playerSource.Play();
 
-        current.voiceSource.clip = current.deathVoiceClip;
-        current.voiceSource.Play();
+        instance.voiceSource.clip = instance.deathVoiceClip;
+        instance.voiceSource.Play();
 
-        current.fxSource.clip = current.deathFXClip;
-        current.fxSource.Play();
+        instance.fxSource.clip = instance.deathFXClip;
+        instance.fxSource.Play();
     }
 
     public static void PlayerOrbAudio()
     {
-        current.fxSource.clip = current.orbFXClip;
-        current.fxSource.Play();
+        instance.fxSource.clip = instance.orbFXClip;
+        instance.fxSource.Play();
 
-        current.voiceSource.clip = current.orbVoiceClip;
-        current.voiceSource.Play();
+        instance.voiceSource.clip = instance.orbVoiceClip;
+        instance.voiceSource.Play();
     }
 }

@@ -1,19 +1,17 @@
-﻿// This script makes the emissive property of a material "pulse". It is used to make
-// background detail tilemap glow. This is purely cosmetic and can be removed for efficiency 
-// on mobile platforms
-
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EmissionPulse : MonoBehaviour
 {
-	public float maxIntensity = 15f;	//The max emissive intensity
-	public float damping = 2f;			//The damping to control the pulse speed
+	public float maxIntensity = 15f;    //The max emissive intensity
+	public float damping = 2f;          //The damping to control the pulse speed
 
-	Material material;					//The material being controlled
-	int emissionColorProperty;			//The ID of the emission property
+	Material material;                  //The material being controlled
+	int emissionColorProperty;          //The ID of the emission property
 
 
-	void Start ()
+	void Start()
 	{
 		//Get a reference to the Renderer component so we can store the material of it
 		Renderer renderer = GetComponent<Renderer>();

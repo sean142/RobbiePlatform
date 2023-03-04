@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
     bool jumpPressed;
     bool jumpHeld;
     bool crouchHeld;
-    bool crouchPressed;
 
     //碰撞體尺寸
     Vector2 colliderStandSize;
@@ -75,7 +74,6 @@ public class PlayerController : MonoBehaviour
         jumpPressed = Input.GetButton("Jump");
         jumpHeld = Input.GetButton("Jump");
         crouchHeld = Input.GetButton("Crouch");
-        crouchPressed = Input.GetButtonDown("Crouch");  
     }
     private void FixedUpdate()
     {
@@ -142,7 +140,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, hangingJumpForce);
                 isHanging = false;
             }
-            if (crouchPressed)
+            if (crouchHeld)
             {
                 rb.bodyType = RigidbodyType2D.Dynamic;
                 isHanging = false;
@@ -151,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumpPressed && isOnGround && !isJump && !isHeadBlacked)
         {
-            if (isCrouch &&isOnGround )
+            if (isCrouch)
             {
                 StandUp();
                 rb.AddForce(new Vector2(0f, crouchJumpBoost), ForceMode2D.Impulse);

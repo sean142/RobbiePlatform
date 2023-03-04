@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animation : MonoBehaviour
+public class PlayerAnimation : MonoBehaviour
 {
-    Animator anim;
+    Animator animator;
     PlayerController movement;
     Rigidbody2D rb;
 
@@ -14,13 +14,15 @@ public class Animation : MonoBehaviour
     int speedID;
     int fallID;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         movement = GetComponentInParent<PlayerController>();
         rb = GetComponentInParent<Rigidbody2D>();
+    }
 
+    void Start()
+    {     
         groundID = Animator.StringToHash("isOnGround");
         hangingID = Animator.StringToHash("isHanging");
         crouchID = Animator.StringToHash("isCrouching");
@@ -28,16 +30,13 @@ public class Animation : MonoBehaviour
         fallID = Animator.StringToHash("verticalVelocity");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        anim.SetFloat(speedID, Mathf.Abs(movement.xVelocity));
-        //anim.SetBool("isOnGround", movement.isOnGround);
-
-        anim.SetBool(groundID, movement.isOnGround);
-        anim.SetBool(hangingID, movement.isHanging);
-        anim.SetBool(crouchID, movement.isCrouch);
-        anim.SetFloat(fallID, rb.velocity.y);
+        animator.SetFloat(speedID, Mathf.Abs(movement.xVelocity));
+        animator.SetBool(groundID, movement.isOnGround);
+        animator.SetBool(hangingID, movement.isHanging);
+        animator.SetBool(crouchID, movement.isCrouch);
+        animator.SetFloat(fallID, rb.velocity.y);
     }
 
     public void StepAudio()
