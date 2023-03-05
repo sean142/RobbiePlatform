@@ -16,5 +16,4 @@ public class WinZone : MonoBehaviour
             Debug.Log("Player Won");
         GameManager.PlayerWon();
     }
-
 }

@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     float gameTime;
     bool gameIsOver;
 
-   //  public int orbNum;
     public int deathNum;
 
     private void Awake()
@@ -23,7 +22,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         instance = this;
 
         orbs = new List<Orb>();
@@ -35,7 +33,6 @@ public class GameManager : MonoBehaviour
     {
         if (gameIsOver)
             return;
-        // orbNum = instance.orbs.Count;
         gameTime += Time.deltaTime;
         UIManager.UpdateTimeUI(gameTime);
     }
@@ -73,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         instance.gameIsOver = true;
         UIManager.DisplayGameOver();
+        AudioManager.PlayerWonAudio();
     }
 
     public static bool GameOver()

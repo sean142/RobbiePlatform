@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class ScenceFader : MonoBehaviour
 {
-    Animator anim;
+    Animator animator;
     int faderID;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();        
+    }
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
-
         faderID = Animator.StringToHash("Fade");
 
         GameManager.RegisterScenceFader(this);
@@ -18,6 +21,6 @@ public class ScenceFader : MonoBehaviour
 
     public void FadeOut()
     {
-        anim.SetTrigger(faderID);
+        animator.SetTrigger(faderID);
     }
 }

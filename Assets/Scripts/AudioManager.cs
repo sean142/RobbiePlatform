@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip deathFXClip;
     public AudioClip orbFXClip;
     public AudioClip doorFXClip;
+    public AudioClip startLevelClip;
+    public AudioClip winClip;
 
     [Header("Robbie音效")]
     public AudioClip[] walkStepClips;
@@ -31,6 +33,12 @@ public class AudioManager : MonoBehaviour
     AudioSource fxSource;//人聲
     AudioSource playerSource;
     AudioSource voiceSource;
+
+    public AudioMixerGroup ambientGroup;
+    public AudioMixerGroup musicGroup;
+    public AudioMixerGroup FXGroup;
+    public AudioMixerGroup playerGroup;
+    public AudioMixerGroup voiceGroup;
 
     private void Awake()
     {
@@ -50,6 +58,12 @@ public class AudioManager : MonoBehaviour
         playerSource=  gameObject.AddComponent<AudioSource>();
         voiceSource = gameObject.AddComponent<AudioSource>();
 
+        ambientSource.outputAudioMixerGroup = ambientGroup;
+        musicSource.outputAudioMixerGroup = musicGroup;
+        fxSource.outputAudioMixerGroup = FXGroup;
+        playerSource.outputAudioMixerGroup = playerGroup;
+        voiceSource.outputAudioMixerGroup = voiceGroup;
+
         StartLevelAudio();
     }
 
@@ -62,6 +76,16 @@ public class AudioManager : MonoBehaviour
         instance.musicSource.clip = instance.musicClip;
         instance.musicSource.loop = true;
         instance.musicSource.Play();
+
+        instance.fxSource.clip = instance.startLevelClip;
+        instance.fxSource.Play();
+    }
+
+    public static void PlayerWonAudio()
+    {
+        instance.fxSource.clip = instance.winClip;
+        instance.fxSource.Play();
+        instance.playerSource.Stop();
     }
 
     public static void PlayDoorOpenAudio()
