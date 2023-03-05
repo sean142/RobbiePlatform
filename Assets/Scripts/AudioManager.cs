@@ -54,8 +54,8 @@ public class AudioManager : MonoBehaviour
 
         ambientSource = gameObject.AddComponent<AudioSource>();
         musicSource = gameObject.AddComponent<AudioSource>();
-        fxSource=  gameObject.AddComponent<AudioSource>();
-        playerSource=  gameObject.AddComponent<AudioSource>();
+        fxSource = gameObject.AddComponent<AudioSource>();
+        playerSource = gameObject.AddComponent<AudioSource>();
         voiceSource = gameObject.AddComponent<AudioSource>();
 
         ambientSource.outputAudioMixerGroup = ambientGroup;
@@ -85,7 +85,9 @@ public class AudioManager : MonoBehaviour
     {
         instance.fxSource.clip = instance.winClip;
         instance.fxSource.Play();
+        instance.playerSource.mute = true;
         instance.playerSource.Stop();
+        instance.playerSource.clip = null;
     }
 
     public static void PlayDoorOpenAudio()
