@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
     AudioSource ambientSource;//環境
     AudioSource musicSource;//背景
     AudioSource fxSource;//人聲
-    AudioSource playerSource;
+    public AudioSource playerSource;
     AudioSource voiceSource;
 
     public AudioMixerGroup ambientGroup;
@@ -85,17 +85,17 @@ public class AudioManager : MonoBehaviour
     {
         instance.fxSource.clip = instance.winClip;
         instance.fxSource.Play();
-        instance.playerSource.mute = true;
-        instance.playerSource.Stop();
+       // instance.playerSource.mute = true;
+      //  instance.playerSource.Stop();
         instance.playerSource.clip = null;
     }
-
+    /*
     public static void PlayerNextSceneAudio()
     {
         instance.fxSource.clip = instance.winClip;
         instance.fxSource.Play();
         instance.playerSource.mute = false;
-    }
+    }*/
 
     public static void PlayDoorOpenAudio()
     {

@@ -15,8 +15,9 @@ public class NextScene : MonoBehaviour
     {
         if ( collision.gameObject.layer == playerLayer)
         {
-            GameManager.NextScene();
             Debug.Log("Next Scene");
-        }           
+        }
+        GameManager.NextScene();
+
     }
 }

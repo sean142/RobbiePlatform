@@ -19145,7 +19145,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.4955752, y: 1}
+    m_SensorSize: {x: 2.491166, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30622,6 +30622,7 @@ MonoBehaviour:
   jumpVoiceClip: {fileID: 8300000, guid: 535b3def063d44f088becce52dcdba58, type: 3}
   deathVoiceClip: {fileID: 8300000, guid: bfe755c2baac648aaa89f65b7534298f, type: 3}
   orbVoiceClip: {fileID: 8300000, guid: df9a2ecbae44a4f30acf4617630a8ca9, type: 3}
+  playerSource: {fileID: 0}
   ambientGroup: {fileID: 243375458998414286, guid: 1a97e82b85c8b7445be8d31fb13bed3a,
     type: 2}
   musicGroup: {fileID: 243230206115637112, guid: 1a97e82b85c8b7445be8d31fb13bed3a,

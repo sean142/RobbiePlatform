@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
     }
+    private void Start()
+    {
+        Debug.Log("GameManager instance: " + instance);
+    }
 
     private void Update()
     {
@@ -100,16 +104,16 @@ public class GameManager : MonoBehaviour
     {
         instance.gameTime = Time.deltaTime;
         instance.canTrans = true;
+        PlayerController.instance.canMove = false;
         AudioManager.PlayerWonAudio();
-        AudioManager.PlayerNextSceneAudio();
-
-       // PlayerController.instance.canMove = false;
-
+        //AudioManager.PlayerNextSceneAudio();
+        AudioManager.instance.playerSource.mute = true;
         instance.Invoke("TONextScene",2f);
     }  
 
     void TONextScene()
     {
+        AudioManager.instance.playerSource.mute = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

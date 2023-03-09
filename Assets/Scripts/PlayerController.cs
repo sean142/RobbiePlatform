@@ -54,6 +54,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+      
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
     }
