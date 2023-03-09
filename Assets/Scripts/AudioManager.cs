@@ -90,6 +90,13 @@ public class AudioManager : MonoBehaviour
         instance.playerSource.clip = null;
     }
 
+    public static void PlayerNextSceneAudio()
+    {
+        instance.fxSource.clip = instance.winClip;
+        instance.fxSource.Play();
+        instance.playerSource.mute = false;
+    }
+
     public static void PlayDoorOpenAudio()
     {
         instance.fxSource.clip = instance.doorFXClip;

@@ -5,19 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance;
+    public static GameManager instance;
     ScenceFader fader;
     List<Orb> orbs;
     Door lockedDoor;
 
-    float gameTime;
+    public float gameTime;
     bool gameIsOver;
-
+    bool canTrans;
     public int deathNum;
 
     private void Awake()
     {
-        if (instance!= null)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     {
         if (gameIsOver)
             return;
+        if (canTrans)
+            return;
+
         gameTime += Time.deltaTime;
         UIManager.UpdateTimeUI(gameTime);
     }
@@ -71,6 +74,7 @@ public class GameManager : MonoBehaviour
         instance.gameIsOver = true;
         UIManager.DisplayGameOver();
         AudioManager.PlayerWonAudio();
+        Time.timeScale = 0;
     }
 
     public static bool GameOver()
@@ -83,12 +87,29 @@ public class GameManager : MonoBehaviour
         instance.fader.FadeOut();
         instance.deathNum++;
         UIManager.UpdateDeathUI(instance.deathNum);
-        instance.Invoke("RestartScene", 1.5f); 
+        instance.Invoke("RestartScene", 1.5f);
     }
 
     void RestartScene()
     {
         instance.orbs.Clear();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public static void NextScene()
+    {
+        instance.gameTime = Time.deltaTime;
+        instance.canTrans = true;
+        AudioManager.PlayerWonAudio();
+        AudioManager.PlayerNextSceneAudio();
+
+       // PlayerController.instance.canMove = false;
+
+        instance.Invoke("TONextScene",2f);
+    }  
+
+    void TONextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

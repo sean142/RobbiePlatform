@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     private  Rigidbody2D rb;
     private BoxCollider2D coll;
 
@@ -26,8 +28,8 @@ public class PlayerController : MonoBehaviour
     public bool isJump;
     public bool isHeadBlacked;
     public bool isHanging;
-
     public float xVelocity;
+    public bool canMove = true;
 
     [Header("環境檢測")]
     public float footOffset = 0.4f;//左右腳之間的位置
@@ -71,19 +73,25 @@ public class PlayerController : MonoBehaviour
         if (GameManager.GameOver())
             return;
 
-        jumpPressed = Input.GetButton("Jump");
-        jumpHeld = Input.GetButton("Jump");
-        crouchHeld = Input.GetButton("Crouch");
+        if (canMove)
+        {
+            jumpPressed = Input.GetButton("Jump");
+            jumpHeld = Input.GetButton("Jump");
+            crouchHeld = Input.GetButton("Crouch");
+        }
+       
     }
     private void FixedUpdate()
-    {
+    {        
         if (GameManager.GameOver())
             return;
-
-        PhysicsCheck();
-        GroundMovment();
-        MidAirMovement();
-
+        if (canMove)
+        {
+            PhysicsCheck();
+            GroundMovment();
+            MidAirMovement();
+        }
+       
     }   
 
     void GroundMovment()

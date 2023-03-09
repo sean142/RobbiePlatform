@@ -43,5 +43,7 @@ public class UIManager : MonoBehaviour
     public static void DisplayGameOver()
     {
         instance.gameoverText.enabled = true;
-    }
+    }   
+
+    
 }
