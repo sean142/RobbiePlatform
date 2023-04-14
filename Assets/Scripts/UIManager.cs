@@ -5,10 +5,11 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    static UIManager instance;
+    public static UIManager instance;
 
     public TextMeshProUGUI orbText, timeText, deathtText,gameoverText;
 
+    public GameObject orb, time, death;
     private void Awake()
     {
         if (instance!= null)
@@ -39,11 +40,10 @@ public class UIManager : MonoBehaviour
 
         instance.timeText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
     }
-
+    /*
     public static void DisplayGameOver()
     {
         instance.gameoverText.enabled = true;
     }   
-
-    
+    */    
 }

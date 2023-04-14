@@ -77,8 +77,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.GameOver())
-            return;
+       //if (GameManager.GameOver())
+          // return;
 
         if (canMove)
         {
@@ -90,8 +90,8 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {        
-        if (GameManager.GameOver())
-            return;
+       // if (GameManager.GameOver())
+            //return;
         if (canMove)
         {
             PhysicsCheck();

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     Door lockedDoor;
 
     public float gameTime;
-    bool gameIsOver;
+ //   public bool gameIsOver;
     bool canTrans;
     public int deathNum;
 
@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameIsOver)
-            return;
-        if (canTrans)
-            return;
+       // if (gameIsOver)
+           // return;
+       // if (canTrans)
+         //  return;
 
         gameTime += Time.deltaTime;
         UIManager.UpdateTimeUI(gameTime);
@@ -72,19 +72,20 @@ public class GameManager : MonoBehaviour
         if (instance.orbs.Count == 0)
             instance.lockedDoor.Open();
         UIManager.UpdateOrbUI(instance.orbs.Count);
-    }
+    }/*
     public static void PlayerWon()
     {
         instance.gameIsOver = true;
         UIManager.DisplayGameOver();
         AudioManager.PlayerWonAudio();
         Time.timeScale = 0;
-    }
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-2);
+    }*/
+    /*
     public static bool GameOver()
     {
         return instance.gameIsOver;
-    }
+    }*/
 
     public static void PlayerDied()
     {
@@ -102,7 +103,6 @@ public class GameManager : MonoBehaviour
 
     public static void NextScene()
     {
-        instance.gameTime = Time.deltaTime;
         instance.canTrans = true;
         PlayerController.instance.canMove = false;
         AudioManager.PlayerWonAudio();
